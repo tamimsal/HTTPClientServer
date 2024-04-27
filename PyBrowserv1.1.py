@@ -20,7 +20,6 @@ def get_method():
     text_box.pack()
     getHeadersButton.pack()
     getCookies.pack()
-    postMethod.pack()
     
 def get_headers():
     value = entry.get()
@@ -44,11 +43,14 @@ def get_cookies():
     text_box.pack()
 
 def post_method():
-    url = 'https://example.com/api'
-    data = {'key': 'value'}
-    response = requests.post(url, data=data)
+    url = 'http://127.0.0.1:5000/login'
+    new_html_content = '<html><body><h1>New Content</h1></body></html>'
+    response = requests.post(url, data={'html_content': new_html_content})
     text_box.delete('1.0', END) 
-    text_box.insert(END, response.text)
+    if response.status_code == 200:
+        text_box.insert(END, "HTML updated successfully.")
+    else:
+        text_box.insert(END, "Error updating HTML:" + str(response.status_code))    
     text_box.pack()
 
 root = tk.Tk()
@@ -68,6 +70,7 @@ text_box = tk.Text(root, height=50, width=200)
 l.pack()
 entry.pack()
 searchButton.pack()
+postMethod.pack()
 
 root.mainloop()
 

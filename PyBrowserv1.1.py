@@ -20,6 +20,7 @@ def get_method():
     text_box.pack()
     getHeadersButton.pack()
     getCookies.pack()
+    postMethod.pack()
     
 def get_headers():
     value = entry.get()
@@ -42,6 +43,14 @@ def get_cookies():
     text_box.insert(END, response.cookies)
     text_box.pack()
 
+def post_method():
+    url = 'https://example.com/api'
+    data = {'key': 'value'}
+    response = requests.post(url, data=data)
+    text_box.delete('1.0', END) 
+    text_box.insert(END, response.text)
+    text_box.pack()
+
 root = tk.Tk()
 root.title("TBrowser")
 root.geometry("1920x1080")
@@ -53,6 +62,8 @@ searchButton = tk.Button(root,text="Search", fg="Black", bg="White", command=get
 getHeadersButton = tk.Button(root,text="Get Headers", fg="Black", bg="White", command=get_headers)
 getWithAuth = tk.Button(root,text="Get with authntication", fg="Black", bg="White", command=get_with_auth)
 getCookies = tk.Button(root,text="Get Cookies", fg="Black", bg="White", command=get_cookies)
+postMethod = tk.Button(root,text="Post", fg="Black", bg="White", command=post_method)
+
 text_box = tk.Text(root, height=50, width=200) 
 l.pack()
 entry.pack()

@@ -1,5 +1,4 @@
 import tkinter as tk 
-from tkhtmlview import HTMLLabel
 import webview 
 
 def get_square_root():  
@@ -10,14 +9,11 @@ def get_square_root():
 root = tk.Tk()
 root.title("TBrowser")
 root.geometry("1920x1080")
-
 x = tk.StringVar()
 entry = tk.Entry(root)
-
 l = tk.Label(root, text = "The Browser better than Google")
 l.config(font =("Courier", 50))
 searchButton = tk.Button(root,text="Search", fg="Black", bg="White", command=get_square_root)
-
 l.pack()
 entry.pack()
 searchButton.pack()
